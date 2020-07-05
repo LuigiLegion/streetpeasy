@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+  "name": "StreetPeasy",
+  "version": "1.0",
+  "description": "",
+  "content_scripts": [
+    {
+      "matches": ["*://*.streeteasy.com/building/*/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
