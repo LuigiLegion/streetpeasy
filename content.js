@@ -1,32 +1,24 @@
 // Initializations
 const checklist = {
-  elevator: false,
+  'pets allowed': false,
+  'no dogs - cats allowed': false,
+  pets: false,
+  cats: false,
+  'no pets': false,
   laundry: false,
   'washer/dryer in-unit': false,
-  cat: false,
-  pet: false,
-  'pets allowed': false,
-  'no pets': false,
+  elevator: false,
 };
 
 function datasets() {
   let description = '';
-  let amenities = '';
   let highlights = '';
+  let amenities = '';
 
   try {
     description = document
       .getElementsByClassName('Description-block')[0]
       .children[0].innerText.toLowerCase();
-
-    amenities = Array.from(
-      document.getElementsByClassName('AmenitiesBlock-item')
-    )
-      .map(function(amenity) {
-        return amenity.innerText;
-      })
-      .join(',')
-      .toLowerCase();
 
     highlights = Array.from(
       document.getElementsByClassName('AmenitiesBlock-highlights')[0].children
@@ -36,11 +28,20 @@ function datasets() {
       })
       .join(',')
       .toLowerCase();
+
+    amenities = Array.from(
+      document.getElementsByClassName('AmenitiesBlock-item')
+    )
+      .map(function(amenity) {
+        return amenity.innerText;
+      })
+      .join(',')
+      .toLowerCase();
   } catch (error) {
     console.error(error);
   }
 
-  return [description, amenities, highlights];
+  return [description, highlights, amenities];
 }
 
 function check(cl, ds) {
@@ -61,9 +62,12 @@ datasets().forEach(function(dataset) {
 
 if (
   !checklist['no pets'] &&
-  checklist.elevator &&
+  (checklist['pets allowed'] ||
+    checklist['no dogs - cats allowed'] ||
+    checklist.pets ||
+    checklist.cats) &&
   (checklist.laundry || checklist['washer/dryer in-unit']) &&
-  (checklist.cat || checklist.pet || checklist['pets allowed'])
+  checklist.elevator
 ) {
   document.body.style.border = '2em solid lightgreen';
 } else {
