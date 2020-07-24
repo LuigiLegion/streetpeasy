@@ -73,3 +73,19 @@ if (
 } else {
   document.body.style.border = '2em solid red';
 }
+
+// Notify background script that active tab should have page action
+browser.runtime.sendMessage({
+  from: 'content',
+  subject: 'showPageAction',
+});
+
+// Listeners
+// Listen for messages from popup script
+browser.runtime.onMessage.addListener(function(message, _, response) {
+  // Validate message structure
+  if (message.from === 'popup' && message.subject === 'DOMData') {
+    // Respond to popup script with necessary data using specified callback
+    response(checklist);
+  }
+});
