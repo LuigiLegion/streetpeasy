@@ -2,8 +2,6 @@
 // Update DOM with requested data
 function setDOMData(data) {
   if (data) {
-    console.log({ data });
-
     for (let key in data) {
       if (data.hasOwnProperty(key)) {
         document.getElementById(key.split(' ').join('_')).style.color = data[
