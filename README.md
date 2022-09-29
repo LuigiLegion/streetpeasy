@@ -14,7 +14,7 @@ Coming soon...
 
 Browser extension that retrieves data regarding the description, highlights, and amenities of a given listing on [StreetEasy.com](https://streeteasy.com), parses it, and checks it against a predetermined checklist.
 
-MVP completed in 1 day for a solo project.
+MVP completed in a day for a solo project.
 
 ### Tech Stack:
 
